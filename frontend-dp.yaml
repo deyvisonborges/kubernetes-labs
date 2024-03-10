@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: # metadata do deployment
+  name: frontend-dp
+  labels:
+    app: frontend-app
+    type: frontend
+spec:
+  template:
+    metadata: # metadata do container
+      name: frontend-pod
+      labels:
+        app: frontend-app
+        type: frontend
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  selector:
+    matchLabels:
+      type: frontend
+  replicas: 6 # 6 pods espalhados
